@@ -15,9 +15,13 @@ class SecurityService
 
     public function getUser()
     {
-        // returns User object or null if not authenticated
         $user = $this->security->getUser();
 
         return $user;
+    }
+
+    public function checkUserRole(string $role): bool
+    {
+        return $this->security->isGranted($role);
     }
 }
