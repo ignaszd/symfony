@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Employee;
 use App\Entity\User;
+use App\Entity\UserRoles;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,6 +24,15 @@ class ValidationService
             'email' => $email
         ]);
         return isset($user) ? true : false;
+    }
+
+    public function checkIfRoleExist(string $newRole): bool
+    {
+        $role = $this->doctrine->getRepository(UserRoles::class)->findOneBy([
+            'name' => $newRole
+        ]);
+
+        return isset($role) ? true : false;
     }
 
 }
