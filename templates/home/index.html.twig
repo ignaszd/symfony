@@ -1,3 +1,28 @@
 Home page
 
 <a href="{{ path('app_logout') }}">Log out</a>
+
+<br>
+<form method="post" action="{{ path('role_assign') }}">
+    User roles: <br>
+    {% if roles is defined %}
+        {% for role in roles %}
+            {{ role.getName() }}
+            <input
+                    type="checkbox"
+                    name="roles[]"
+                    value="{{ role.getName() }}"
+                    {% if role.getName() in app.user.getRoles() %}
+                     checked
+                    {% endif %}
+            > <br>
+        {% endfor %}
+    {% endif %}
+    <button type="submit">Assign</button>
+    <br>
+</form>
+<form method="post" action="{{ path('role_create') }}">
+    <label for="new_role"> Create new role</label>
+    <input name="new_role" id="new_role">
+    <button type="submit">Create</button>
+</form>
