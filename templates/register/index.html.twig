@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ form_start(form) }}
+<label>Username</label>
+<div>
+    {{ form_row(form.email) }}
+</div>
+
+<label>Password</label>
+<div>
+    {{ form_row(form.password) }}
+</div>
+
+<div>
+    <button>{{ button_label|default('Register') }}</button>
+</div>
+{{ form_end(form) }}
+{% endblock %}
